@@ -1,7 +1,17 @@
 public class Main {
     public static void main(String[] args) {
-        Employee emp = new Employee("123", "Macorol");
-        System.out.println(emp.getEmpID()+emp.getName());
+       TwoThreeTree tree = new TwoThreeTree(5); // Minimum degree is 3
+       Employee employee1 = new Employee(123, "Macorol, Renard B.", 23000.00, "Software Engineer");
+            tree.insert(employee1);
+            
+
+        System.out.println("Traversal of the constructed 2-3 tree is ");
+        tree.traverse();
+
+        
+
 
     }
+
+   
 }
