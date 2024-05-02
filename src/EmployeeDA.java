@@ -15,7 +15,7 @@ public class EmployeeDA {
 
     private void readEmployee() {
         try {
-            Scanner employeeFile = new Scanner(new FileReader("/workspaces/Lab_Assign5/emp.csv"));
+            Scanner employeeFile = new Scanner(new FileReader("/workspaces/DAA_FinalProject/src/emp.csv"));
             employeeFile.nextLine(); 
             while (employeeFile.hasNextLine()) {
                 String empLine = employeeFile.nextLine();

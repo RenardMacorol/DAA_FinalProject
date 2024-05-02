@@ -20,7 +20,7 @@ public class DepartmentDA {
     private HashMap<String, Department> readDept() {
         HashMap<String, Department> departments = new HashMap<>();
         try {
-            Scanner departmentFile = new Scanner(new FileReader("/workspaces/Lab_Assign5/dep.csv"));
+            Scanner departmentFile = new Scanner(new FileReader("/workspaces/DAA_FinalProject/src/dep.csv"));
             departmentFile.nextLine();
 
             while (departmentFile.hasNext()) {
@@ -42,7 +42,7 @@ public class DepartmentDA {
 
     private void readDepEmp() {
         try {
-            Scanner depEmpFile = new Scanner(new FileReader("/workspaces/Lab_Assign5/deptemp.csv"));
+            Scanner depEmpFile = new Scanner(new FileReader("/workspaces/DAA_FinalProject/src/deptemp.csv"));
             depEmpFile.nextLine();
             while (depEmpFile.hasNext()) {
                 String depEmpLine = depEmpFile.nextLine();
