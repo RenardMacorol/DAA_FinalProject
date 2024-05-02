@@ -23,9 +23,9 @@ class Node {
             // traverse the subtree rooted with child children[i].
             if (!this.leaf)
                 this.children[i].traverse();
-            System.out.print("Emp ID is "+ this.keys[i].getEmpID() + " ");
-            System.out.println("Name:"+ this.keys[i].getEmployeeName() + " ");
-            System.out.println("Job Description:"+ this.keys[i].getJobDesc()+ " ");
+            System.out.print("Emp ID is "+ this.keys[i].getEmpNo() + " ");
+            System.out.println("Name:"+ this.keys[i].getFirstName() +" " +this.keys[i].getLastName() +" ");
+            System.out.println("Job Description:"+ this.keys[i].getJobDescription()+ " ");
             System.out.println("Salary: " + this.keys[i].getSalary()+" ");
         }
 
@@ -38,11 +38,11 @@ class Node {
     Node search(int k) {
         // Find the first key greater than or equal to k
         int i = 0;
-        while (i < this.numKeys && k > this.keys[i].getEmpID())
+        while (i < this.numKeys && k > this.keys[i].getEmpNo())
             i++;
 
         // If the found key is equal to k, return this node
-        if (i < this.numKeys && this.keys[i].getEmpID() == k)
+        if (i < this.numKeys && this.keys[i].getEmpNo() == k)
             return this;
 
         // If the key is not found and this is a leaf node
@@ -99,7 +99,7 @@ class Node {
         // If this is a leaf node
         if (this.leaf) {
             // Find the right place to insert the new key and move all greater keys one place ahead
-            while (i >= 0 && this.keys[i].getEmpID() > employee.getEmpID()) {
+            while (i >= 0 && this.keys[i].getEmpNo() > employee.getEmpNo()) {
                 this.keys[i + 1] = this.keys[i];
                 i--;
             }
@@ -109,7 +109,7 @@ class Node {
             this.numKeys++;
         } else { // If this node is not leaf
             // Find the child which is going to have the new key
-            while (i >= 0 && this.keys[i].getEmpID() > employee.getEmpID())
+            while (i >= 0 && this.keys[i].getEmpNo() > employee.getEmpNo())
                 i--;
 
             // See if the found child is full
@@ -119,7 +119,7 @@ class Node {
 
                 // After the split, the middle key of y goes up and y is split into two.
                 // See which of the two is going to have the new key
-                if (this.keys[i + 1].getEmpID() < employee.getEmpID())
+                if (this.keys[i + 1].getEmpNo() < employee.getEmpNo())
                     i++;
             }
             this.children[i + 1].insertNonFull(employee);

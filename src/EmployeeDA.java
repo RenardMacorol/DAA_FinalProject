@@ -22,7 +22,7 @@ public class EmployeeDA {
                 String[] empArr = empLine.split(",");
                 String empNo = empArr[0].trim();
                 Employee employee = new Employee();
-                employee.setEmpNo(empNo);
+                employee.setEmpNo(Integer.parseInt(empNo));
                 employee.setLastName(empArr[1].trim());
                 employee.setFirstName(empArr[2].trim());
                 employeeMap.put(empNo, employee);

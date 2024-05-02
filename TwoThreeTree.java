@@ -41,7 +41,7 @@ public class TwoThreeTree {
                 s.children[0] = this.root;
                 s.splitChild(0, this.root);
                 int i = 0;
-                if (s.keys[0].getEmpID() < employee.getEmpID())
+                if (s.keys[0].getEmpNo() < employee.getEmpNo())
                     i++;
                 s.children[i].insertNonFull(employee);
                 this.root = s;

@@ -1,10 +1,33 @@
 public class Employee {
-    private String empNo;
+    private int empNo;
     private String lastName;
     private String firstName;
     private Double salary;
+    private String department;
+    private String jobDesc;
 
-    public void setEmpNo(String empNo) {
+    Employee(){
+
+    }
+
+    Employee(int empNo, String lastName,String firstName, Double salary, String department, String jobDesc){
+        this.empNo = empNo;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.salary = salary;
+        this.department = department;
+        this.jobDesc = jobDesc;
+    }
+
+    public void setDepartment(String department){
+        this.department= department;
+    }
+
+    public void setJobDescription(String jobDesc){
+        this.jobDesc = jobDesc;
+    }
+
+    public void setEmpNo(int empNo) {
         this.empNo = empNo;
     }
 
@@ -20,7 +43,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getEmpNo() {
+    public int getEmpNo() {
         return empNo;
     }
 
@@ -34,5 +57,13 @@ public class Employee {
 
     public Double getSalary() {
         return salary;
+    }
+
+    public String getJobDescription(){
+        return jobDesc;
+    }
+
+    public String getDepartment(){
+        return department;
     }
 }
