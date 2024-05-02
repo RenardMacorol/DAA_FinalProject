@@ -1,30 +1,38 @@
 public class Employee {
-    int empId;
-    String employeeName;
-    Double salary;
-    String jobDesc;
+    private String empNo;
+    private String lastName;
+    private String firstName;
+    private Double salary;
 
-    Employee(int empId,String name, Double salary,String jobDesc){
-        this.empId= empId;
-        this.employeeName= name;
-        this.salary= salary;
-        this.jobDesc= jobDesc;
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo;
     }
 
-    public int getEmpID() {
-        return empId;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Double getSalary(){
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public String getEmpNo() {
+        return empNo;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public Double getSalary() {
         return salary;
     }
-
-    public String getJobDesc(){
-        return jobDesc;
-    }
-
 }
