@@ -47,7 +47,7 @@ public class GUI implements ActionListener{
 
     private void addBackButtons(){
         backButton = new JButton("Back");
-        backButton.setBounds(300, 300, 300, 100);
+        backButton.setBounds(600, 500, 300, 100);
         backButton.setFont(buttonFonts);
         backButton.addActionListener(this);
         mainFrame.add(backButton);
@@ -55,9 +55,11 @@ public class GUI implements ActionListener{
 
     
 
-    private void replaceUI() {
+    private void replaceUI(int excemptions) {
         mainFrame.getContentPane().removeAll();
-        addBackButtons();
+        if(excemptions==0){
+            addBackButtons();
+        }
         mainFrame.revalidate();
         mainFrame.repaint();
         throw new UnsupportedOperationException("Unimplemented method 'replaceUI'");
@@ -65,15 +67,17 @@ public class GUI implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==employeeButton){
-            
-            replaceUI();
+       
+        if (e.getSource() == employeeButton || e.getSource() == adminButton) {
+                replaceUI(0);
+        } else if (e.getSource() == backButton) {
+                mainFrame.getContentPane().removeAll();
+                welcomeMessage();
+                interfaceButtons();
+                mainFrame.revalidate();
+                mainFrame.repaint();
         }
-        if(e.getSource()==adminButton){
-            
-            replaceUI();
-        }
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+       
     }
 
 }   
