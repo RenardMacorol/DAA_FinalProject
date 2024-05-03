@@ -25,7 +25,7 @@ class Node {
                 this.children[i].traverse();
             System.out.print("Emp ID is "+ this.keys[i].getEmpNo() + " ");
             System.out.println("Name:"+ this.keys[i].getFirstName() +" " +this.keys[i].getLastName() +" ");
-            System.out.println("Job Description:"+ this.keys[i].getJobDescription()+ " ");
+            System.out.println("Job Description:"+ this.keys[i].getJobDesc()+ " ");
             System.out.println("Salary: " + this.keys[i].getSalary()+" ");
         }
 
