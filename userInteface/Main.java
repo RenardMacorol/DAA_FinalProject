@@ -1,4 +1,4 @@
-import userInteface.*;
+package userInteface;
 public class Main {
     public static void main(String[] args) {
        GUI newInterface = new GUI();

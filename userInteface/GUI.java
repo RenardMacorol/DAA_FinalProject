@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+
 public class GUI implements ActionListener{
     JFrame mainFrame;
     JButton employeeButton;
     JButton adminButton;
     JButton backButton;
+    JTextField employeeTextField;
     Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
 
     public GUI(){
@@ -65,12 +67,31 @@ public class GUI implements ActionListener{
         throw new UnsupportedOperationException("Unimplemented method 'replaceUI'");
     }
 
+    private void employeeUI(){
+        mainFrame.getContentPane().removeAll();
+        employeeTextField = new JTextField("Please Enter the employee no to proceed");
+        employeeTextField.setBounds(500, 200, 300, 50);
+      
+        mainFrame.add(employeeTextField);
+        addBackButtons();
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
+   
     @Override
     public void actionPerformed(ActionEvent e) {
        
-        if (e.getSource() == employeeButton || e.getSource() == adminButton) {
-                replaceUI(0);
-        } else if (e.getSource() == backButton) {
+        if (e.getSource() == employeeButton){
+            employeeUI();
+           
+            
+        }  
+        if(e.getSource() == adminButton) {
+            replaceUI(0);
+        } 
+        else if (e.getSource() == backButton) 
+        {
                 mainFrame.getContentPane().removeAll();
                 welcomeMessage();
                 interfaceButtons();
