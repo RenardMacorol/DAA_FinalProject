@@ -8,13 +8,13 @@ public class TwoThreeTree {
         this.t = t;
     }
 
-    // Function to traverse the tree
+    // This function to travese the tree
     void traverse() {
         if (this.root != null)
             this.root.traverse();
     }
 
-    // Function to search a key in this tree
+    // This function is to search a key. Usefull function and important for this program 
     public Node search(int k) {
     return searchInSubtree(root, k);
     }

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class EmployeeMain {
+    EmployeeMain(){
         Scanner scanner = new Scanner(System.in);
         EmployeeManager manager = new EmployeeManager();
 
@@ -44,4 +44,5 @@ public class Main {
 
         scanner.close();
     }
+   
 }

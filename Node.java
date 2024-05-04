@@ -1,7 +1,6 @@
 class Node {
     Employee[] keys;
     Node[] children;
-    Employee employee;
     int numKeys;
     boolean leaf;
     int t; // minimum degree

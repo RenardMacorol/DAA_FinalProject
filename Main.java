@@ -1,7 +1,11 @@
-package userInteface;
+
+import userInteface.GUI;
+
 public class Main {
     public static void main(String[] args) {
        GUI newInterface = new GUI();
+
+       EmployeeMain employeeManage = new EmployeeMain();
 
        /*
         TwoThreeTree tree = new TwoThreeTree(5); // Minimum degree is 3
