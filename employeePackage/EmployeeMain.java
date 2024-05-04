@@ -39,12 +39,11 @@ public class EmployeeMain {
             addingEmployee = choice.equalsIgnoreCase("yes");
         }
 
-        String filename = "/workspaces/DAA_FinalProject/src/emp.csv";
+        String filename = "/workspaces/DAA_FinalProject/employeePackage/emp.csv";
         manager.writeToCSV(filename);
 
         System.out.println("Employee data saved to " + filename);
 
         scanner.close();
     }
-   
 }
