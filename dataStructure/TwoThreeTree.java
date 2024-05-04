@@ -2,13 +2,14 @@ package dataStructure;
 import employeePackage.*;
 
 public class TwoThreeTree {
-    Node root;
+    public Node root;
     int t; // Minimum degree
-
+    int numEmployees;
     // Constructor
     public TwoThreeTree(int t) {
         this.root = null;
         this.t = t;
+        this.numEmployees =0;
     }
 
     // This function to travese the tree
@@ -50,6 +51,27 @@ public class TwoThreeTree {
                 this.root = s;
             } else // If root is not full, call insertNonFull for root
                 this.root.insertNonFull(employee);
+        }
+    }
+
+
+    // Method to count the number of employees in the tree
+    public int countEmployees() {
+        numEmployees = 0; // Reset the count before traversal
+        countEmployeesInSubtree(root); // Start counting from the root
+        return numEmployees;
+    }
+
+    // Helper method to recursively count employees in a subtree
+    private void countEmployeesInSubtree(Node node) {
+        if (node != null) {
+            // Add the number of keys in the current node to the total count
+            numEmployees += node.numKeys;
+
+            // Recursively count employees in the children of the current node
+            for (int i = 0; i < node.numKeys + 1; i++) {
+                countEmployeesInSubtree(node.children[i]);
+            }
         }
     }
 }

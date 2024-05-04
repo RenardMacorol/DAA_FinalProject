@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+
+import javax.swing.table.DefaultTableModel;
+
 import dataStructure.*;
-import dataStructure.TwoThreeTree;
 import employeePackage.Employee;
 
 
@@ -16,6 +18,8 @@ public class GUI implements ActionListener{
     JButton adminButton;
     JButton backButton;
     JButton searchEmployeeButton;
+    JButton adminInsertButton;
+    JButton adminDeleteButoon;
     JTextField employeeTextField;
     JLabel isInputValid;
     private TwoThreeTree tree;
@@ -137,7 +141,61 @@ public class GUI implements ActionListener{
         return str.matches("\\d+");
     }
 
+    public void adminUI(int type){
+        mainFrame.getContentPane().removeAll();
+        employeeTextField = new JTextField("Please Enter the employee no to proceed");
+        employeeTextField.setBounds(500, 20, 300, 50);
+        
+        searchEmployeeButton = new JButton("Search");
+        searchEmployeeButton.setBounds(800, 20, 100, 50);
+        searchEmployeeButton.addActionListener(this);
+
+        adminInsertButton = new JButton("Insert new Employee");
+        adminInsertButton.setBounds(900, 20, 200, 50);
+        adminInsertButton.addActionListener(this);
+        
+        adminDeleteButoon = new JButton("Delete");
+        adminDeleteButoon.setBounds(1100, 20, 100, 50);
+        adminDeleteButoon.addActionListener(this);
+        if(type ==1){
+            JLabel isInputValid = new JLabel("");
+            isInputValid.setBounds(500, 200, 300, 200);
+            isInputValid.setText("Invalid Employee ID (Enter Numbers Only)");
+            mainFrame.add(isInputValid);
+        }
+
+        DefaultTableModel tableModel = new DefaultTableModel();
+        JTable table = new JTable(tableModel);
+
+        // Add columns to the table
+        tableModel.addColumn("Employee ID");
+        tableModel.addColumn("Last Name");
+        tableModel.addColumn("First Name");
+        tableModel.addColumn("Salary");
+        tableModel.addColumn("Department");
+        tableModel.addColumn("Job Description");
+
+        Object[][] employeeData = getEmployeeDataFromTree(tree);
+        for (Object[] row : employeeData) {
+            tableModel.addRow(row);
+        }
+    
+        // Add the table to a scroll pane and set its bounds
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(50, 100, 1400, 600);
+       
+        mainFrame.add(scrollPane);
+        mainFrame.add(adminInsertButton);
+        mainFrame.add(adminDeleteButoon);
+        mainFrame.add(searchEmployeeButton);
+        mainFrame.add(employeeTextField);
+        addBackButtons();
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == searchEmployeeButton){
@@ -158,7 +216,7 @@ public class GUI implements ActionListener{
             employeeUI(0);
         }  
         if(e.getSource() == adminButton) {
-            replaceUI(0);
+            adminUI(0);
         } 
         else if (e.getSource() == backButton) 
         {
@@ -170,5 +228,66 @@ public class GUI implements ActionListener{
         }
        
     }
+
+
+    public Object[][] getEmployeeDataFromTree(TwoThreeTree tree) {
+        int numEmployees = tree.countEmployees();
+        // Initialize an array to hold the employee data
+        Object[][] employeeData = new Object[numEmployees][6];
+        
+        // Traverse the tree and collect employee data
+        collectEmployeeData(tree.root, employeeData, 0);
+        
+        return employeeData;
+    }
+    
+    // Helper method to calculate the size of the tree
+    private int treeSize(TwoThreeTree tree) {
+        return treeSizeHelper(tree.root);
+    }
+    
+    private int treeSizeHelper(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < node.numKeys; i++) {
+            count += treeSizeHelper(node.children[i]);
+        }
+        count += node.numKeys;
+        return count;
+    }
+    
+    // Helper method to collect employee data recursively
+private int collectEmployeeData(Node node, Object[][] employeeData, int index) {
+    if (node == null) {
+        return index;
+    }
+
+    for (int i = 0; i < node.numKeys; i++) {
+        Employee employee = node.keys[i];
+        if (index < employeeData.length && i < employeeData[index].length) {
+            employeeData[index][0] = employee.getEmpNo();
+            employeeData[index][1] = employee.getLastName();
+            employeeData[index][2] = employee.getFirstName();
+            employeeData[index][3] = employee.getSalary();
+            employeeData[index][4] = employee.getDepartment();
+            employeeData[index][5] = employee.getJobDesc();
+            index++;
+        } else {
+            // Handle case when the array dimensions are not enough
+            System.err.println("Array dimensions are not enough to accommodate all employees.");
+            return index;
+        }
+    }
+
+    for (int i = 0; i < node.numKeys + 1; i++) {
+        index = collectEmployeeData(node.children[i], employeeData, index);
+    }
+
+    return index;
+}
+
+    
 
 }   

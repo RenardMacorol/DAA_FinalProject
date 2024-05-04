@@ -3,8 +3,8 @@ import employeePackage.*;
 
 public class Node {
     public Employee[] keys;
-    Node[] children;
-    int numKeys;
+    public Node[] children;
+    public int numKeys;
     boolean leaf;
     int t; // minimum degree
 
