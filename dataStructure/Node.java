@@ -37,7 +37,7 @@ public class Node {
     Node search(int k) {
         // Find the first key greater than or equal to k
         int i = 0;
-        while (i < this.numKeys && k >= this.keys[i].getEmpNo())
+        while (i < this.numKeys && k > this.keys[i].getEmpNo())
             i++;
 
         // If the found key is equal to k, return this node
