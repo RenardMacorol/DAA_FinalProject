@@ -1,5 +1,8 @@
-class Node {
-    Employee[] keys;
+package dataStructure;
+import employeePackage.*;
+
+public class Node {
+    public Employee[] keys;
     Node[] children;
     int numKeys;
     boolean leaf;
@@ -22,10 +25,7 @@ class Node {
             // traverse the subtree rooted with child children[i].
             if (!this.leaf)
                 this.children[i].traverse();
-            System.out.print("Emp ID is "+ this.keys[i].getEmpNo() + " ");
-            System.out.println("Name:"+ this.keys[i].getFirstName() +" " +this.keys[i].getLastName() +" ");
-            System.out.println("Job Description:"+ this.keys[i].getJobDesc()+ " ");
-            System.out.println("Salary: " + this.keys[i].getSalary()+" ");
+            System.out.print(this.keys[i].getEmpNo()+" ");
         }
 
         // Print the subtree rooted with last child
@@ -37,7 +37,7 @@ class Node {
     Node search(int k) {
         // Find the first key greater than or equal to k
         int i = 0;
-        while (i < this.numKeys && k > this.keys[i].getEmpNo())
+        while (i < this.numKeys && k >= this.keys[i].getEmpNo())
             i++;
 
         // If the found key is equal to k, return this node

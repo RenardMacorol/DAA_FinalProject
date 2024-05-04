@@ -1,15 +1,18 @@
+package dataStructure;
+import employeePackage.*;
+
 public class TwoThreeTree {
     Node root;
     int t; // Minimum degree
 
     // Constructor
-    TwoThreeTree(int t) {
+    public TwoThreeTree(int t) {
         this.root = null;
         this.t = t;
     }
 
     // This function to travese the tree
-    void traverse() {
+    public void traverse() {
         if (this.root != null)
             this.root.traverse();
     }
@@ -28,7 +31,7 @@ public class TwoThreeTree {
 
 
     // The main function that inserts a new key in this 2-3 Tree
-    void insert(Employee employee) {
+    public void insert(Employee employee) {
         // If the tree is empty
         if (this.root == null) {
             this.root = new Node(t, true);

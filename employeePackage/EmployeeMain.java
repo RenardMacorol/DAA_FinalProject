@@ -1,3 +1,5 @@
+package employeePackage;
+
 import java.util.Scanner;
 
 public class EmployeeMain {

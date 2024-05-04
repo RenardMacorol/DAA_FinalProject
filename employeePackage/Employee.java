@@ -1,4 +1,6 @@
-class Employee {
+package employeePackage;
+
+public class Employee {
     private int empNo;
     private String lastName;
     private String firstName;
