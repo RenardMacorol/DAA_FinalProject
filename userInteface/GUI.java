@@ -20,6 +20,7 @@ public class GUI implements ActionListener{
     JButton searchEmployeeButton;
     JButton adminInsertButton;
     JButton adminDeleteButoon;
+    JButton adminVisualButton;
     JTextField employeeTextField;
     JLabel isInputValid;
     private TwoThreeTree tree;
@@ -71,14 +72,13 @@ public class GUI implements ActionListener{
 
     
 
-    private void replaceUI(int excemptions) {
+    private void visualizeTree() {
         mainFrame.getContentPane().removeAll();
-        if(excemptions==0){
-            addBackButtons();
-        }
+        TwoThreeTreeVisualizer visualizer = new TwoThreeTreeVisualizer(tree);
+        mainFrame.add(visualizer);
         mainFrame.revalidate();
         mainFrame.repaint();
-        throw new UnsupportedOperationException("Unimplemented method 'replaceUI'");
+        
     }
 
     private void employeeUI(int type){
@@ -166,6 +166,11 @@ public class GUI implements ActionListener{
         adminDeleteButoon = new JButton("Delete");
         adminDeleteButoon.setBounds(1100, 20, 100, 50);
         adminDeleteButoon.addActionListener(this);
+
+        adminVisualButton = new JButton("Visual Tree");
+        adminVisualButton.setBounds(1200, 20, 100, 50);
+        adminVisualButton.addActionListener(this);
+        
         if(type ==1){
             JLabel isInputValid = new JLabel("");
             isInputValid.setBounds(500, 200, 300, 200);
@@ -199,6 +204,7 @@ public class GUI implements ActionListener{
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(50, 100, 1400, 600);
        
+        mainFrame.add(adminVisualButton);
         mainFrame.add(scrollPane);
         mainFrame.add(adminInsertButton);
         mainFrame.add(adminDeleteButoon);
@@ -232,7 +238,11 @@ public class GUI implements ActionListener{
         }  
         if(e.getSource() == adminButton) {
             adminUI(0);
-        } 
+        }
+        
+        if(e.getSource() == adminVisualButton){
+            visualizeTree();
+        }
         else if (e.getSource() == backButton) 
         {
                 mainFrame.getContentPane().removeAll();
