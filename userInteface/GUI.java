@@ -105,7 +105,7 @@ public class GUI implements ActionListener{
         mainFrame.repaint();
     }
 
-    private void EmployeeResult(Node resultNode){
+    private void EmployeeResult(Node resultNode,int searchID){
         mainFrame.getContentPane().removeAll();
         JTextField resultEmployeeID = new JTextField();
         JTextField resultEmployeeName = new JTextField();
@@ -118,14 +118,18 @@ public class GUI implements ActionListener{
         resultEmployeeSalary.setBounds(100, 300, 500, 30);
         resultEmployeeDepartment.setBounds(100, 400, 500, 30);
         resultEmployeeJobDesc.setBounds(100, 500, 500, 30);
-
+        for(int i=0;i < resultNode.numKeys; i++){
+            Employee employee = resultNode.keys[i];
+            if(employee.getEmpNo() == searchID){
+                resultEmployeeID.setText("Employee ID: " + employee.getEmpNo() );
+                resultEmployeeName.setText("Name: "+ employee.getLastName()+ ", " +employee.getFirstName());
+                resultEmployeeSalary.setText("Monthly Salary: " + employee.getSalary() );
+                resultEmployeeDepartment.setText("Department: " + employee.getDepartment());
+                resultEmployeeJobDesc.setText("Job Description: " + employee.getJobDesc());
+            }
+        }
         
-        Employee employee = resultNode.keys[0];
-        resultEmployeeID.setText("Employee ID: " + employee.getEmpNo() );
-        resultEmployeeName.setText("Name: "+ employee.getLastName()+ ", " +employee.getFirstName());
-        resultEmployeeSalary.setText("Monthly Salary: " + employee.getSalary() );
-        resultEmployeeDepartment.setText("Department: " + employee.getDepartment());
-        resultEmployeeJobDesc.setText("Job Description: " + employee.getJobDesc());
+        
         mainFrame.add(resultEmployeeID);
         mainFrame.add(resultEmployeeName);
         mainFrame.add(resultEmployeeSalary);
@@ -205,7 +209,7 @@ public class GUI implements ActionListener{
                 int searchID = Integer.parseInt(employeeTextField.getText());
                 Node resultNode = tree.search(searchID);
                 if(tree.search(searchID)!=null){
-                    EmployeeResult(resultNode);
+                    EmployeeResult(resultNode, searchID);
                 }
             }else{
                 employeeUI(1);
