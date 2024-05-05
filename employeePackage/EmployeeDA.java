@@ -16,7 +16,7 @@ public class EmployeeDA {
     }
 
     public TwoThreeTree readFromCSV() {
-        List<Employee> employees = new ArrayList<>();
+        
         TwoThreeTree tree = new TwoThreeTree(3);
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -30,7 +30,6 @@ public class EmployeeDA {
                     String department = parts[4];
                     String jobDesc = parts[5];
                     tree.insert(new Employee(empNo, lastName, firstName, salary, department, jobDesc));
-                    employees.add(new Employee(empNo, lastName, firstName, salary, department, jobDesc));
                 } else {
                     System.out.println("Invalid data in CSV file: " + line);
                 }
