@@ -1,11 +1,12 @@
 import dataStructure.TwoThreeTree;
 import employeePackage.Employee;
+import employeePackage.EmployeeDA;
 import userInteface.*;
 
 public class App {
     public static void main(String[] args) {
-       
-        TwoThreeTree tree = new TwoThreeTree(5); // Minimum degree is 3\
+       /* 
+        TwoThreeTree tree = new TwoThreeTree(3); // Minimum degree is 3\
         //for test purpose need ng csv reader tapos doon kukuha 
        Employee employee0 = new Employee(123, "Macorol", "Renard", 23000.00, "Dev department", "Software Engineer");
        Employee employee1 = new Employee(224, "John", "Doe", 25000.00, "HR department", "HR Manager");
@@ -31,7 +32,9 @@ public class App {
 
 
         tree.traverse();
-            
+        */
+      EmployeeDA employeeDa = new EmployeeDA("employeePackage/emp.csv");  
+      TwoThreeTree tree = employeeDa.readFromCSV();
       GUI newInterface = new GUI(tree);
 
        //EmployeeMain employeeManage = new EmployeeMain();
