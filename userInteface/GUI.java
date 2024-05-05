@@ -114,10 +114,15 @@ public class GUI implements ActionListener{
         JTextField resultEmployeeJobDesc = new JTextField();
 
         resultEmployeeID.setBounds(100, 100, 500, 30);
+        resultEmployeeID.setEditable(false);
         resultEmployeeName.setBounds(100, 200, 500, 30);
+        resultEmployeeName.setEditable(false);
         resultEmployeeSalary.setBounds(100, 300, 500, 30);
+        resultEmployeeSalary.setEditable(false);
         resultEmployeeDepartment.setBounds(100, 400, 500, 30);
+        resultEmployeeDepartment.setEditable(false);
         resultEmployeeJobDesc.setBounds(100, 500, 500, 30);
+        resultEmployeeJobDesc.setEditable(false);
         for(int i=0;i < resultNode.numKeys; i++){
             Employee employee = resultNode.keys[i];
             if(employee.getEmpNo() == searchID){
@@ -168,7 +173,13 @@ public class GUI implements ActionListener{
             mainFrame.add(isInputValid);
         }
 
-        DefaultTableModel tableModel = new DefaultTableModel();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells uneditable
+            }
+        };
+        
         JTable table = new JTable(tableModel);
 
         // Add columns to the table
