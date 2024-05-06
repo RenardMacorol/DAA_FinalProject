@@ -6,7 +6,7 @@
 The Employee Management System (EMS) is a Java application designed to facilitate the management of employee data through an intuitive graphical user interface (GUI). The system caters to both employees and administrators, providing features for searching, updating, deleting, and inserting employee information. Additionally, administrators have access to a summary function that calculates potential monthly and yearly expenses for employee salaries based on the data stored in a CSV file.
 
 ## Key Feautures
-- **Employee Information Retrieval:** Employees can search for their personal information stored in the system using predefined search criteria such as employee ID or name. The GUI provides an intuitive interface for entering search queries and viewing search results.
+- **Employee Information Retrieval:** Employees can search for their personal information stored in the system using predefined search criteria such as employee NO or employee ID. The GUI provides an intuitive interface for entering search queries and viewing search results.
 
 - **Data Management for Administrators:** Administrators have comprehensive control over employee data, including the ability to update existing records, delete outdated entries, and insert new employee information. Data management operations are performed using file handling techniques, with employee data stored in a CSV file for easy manipulation.
 
