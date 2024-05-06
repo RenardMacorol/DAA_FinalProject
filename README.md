@@ -13,6 +13,18 @@ The Employee Management System (EMS) is a Java application designed to facilitat
 - **Summary Functionality:** Administrators can generate summary reports detailing potential monthly and yearly expenses for employee salaries. The summary function calculates total salary expenditures based on the data stored in the CSV file, providing valuable insights for budget planning and financial analysis.
 
 - **Graphical User Interface (GUI):** The EMS features a user-friendly GUI that simplifies navigation and interaction for both employees and administrators. The interface includes intuitive input forms, interactive search functions, and informative data displays to enhance the user experience.
+## Implemented 2-3 Tree
+The project utilizes a 2-3 Tree data structure to efficiently store and manage employee data. The 2-3 Tree is a type of balanced search tree that maintains sorted data and allows for quick retrieval and manipulation of information.
+
+### Features of the 2-3 Tree
+- **Balanced Structure:** The 2-3 Tree ensures that all leaf nodes are at the same level, leading to optimal performance for insertion, deletion, and search operations.
+- **Efficient Search:** Searching for employee information is efficient due to the balanced nature of the tree, resulting in logarithmic time complexity for search operations.
+- **Dynamic Adjustment:** The tree dynamically adjusts its structure during insertion and deletion operations to maintain balance and uphold the properties of a 2-3 Tree.
+
+### Implementation Details
+The 2-3 Tree implementation includes the following components:
+- **Node Class:** Represents a node in the 2-3 Tree structure. It contains fields for storing employee keys and references to child nodes.
+- **TwoThreeTree Class:** Represents the 2-3 Tree itself and provides methods for insertion, deletion, searching, and traversal of the tree.
 
 
 ## How to open the application
