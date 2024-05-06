@@ -79,7 +79,7 @@ public class InsertEmpGUI implements ActionListener {
                 String jobDesc = jobDescField.getText();
 
                 // format chuchu
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\sevil\\New folder (7)\\DAA_FinalProject\\employeePackage\\emp.csv", true))) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("employeePackage\\emp.csv", true))) {
                     writer.write(empNo + "," + lastName + "," + firstName + "," + salary + "," + department + "," + jobDesc + "\n");
                 }
 

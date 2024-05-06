@@ -5,7 +5,7 @@ import userInteface.*;
 public class App {
     public static void main(String[] args) {
       
-      EmployeeDA employeeDa = new EmployeeDA("C:\\Users\\sevil\\New folder (7)\\DAA_FinalProject\\employeePackage\\emp.csv");  
+      EmployeeDA employeeDa = new EmployeeDA("employeePackage\\emp.csv");  
       TwoThreeTree tree = employeeDa.readFromCSV();
       GUI newInterface = new GUI(tree, employeeDa);
 
