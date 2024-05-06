@@ -5,6 +5,7 @@ public class TwoThreeTree {
     public Node root;
     int t; // Minimum degree
     int numEmployees;
+    private double totalSalary;
     // Constructor
     public TwoThreeTree(int t) {
         this.root = null;
@@ -55,6 +56,27 @@ public class TwoThreeTree {
     }
 
 
+    
+    public Double countSalary(){
+        totalSalary = 0.00;
+        countSalaryInSubtree(root);
+        return totalSalary;
+    }
+
+    private void countSalaryInSubtree(Node node) {
+        if (node != null) {
+            for(int i = 0; i < node.numKeys; i++){
+                totalSalary += node.keys[i].getSalary();
+            }
+            
+            // Recursively sum
+            for (int i = 0; i < node.numKeys + 1; i++) {
+               countSalaryInSubtree(node.children[i]);
+            }
+        }
+    }
+
+    
     // Method to count the number of employees in the tree
     public int countEmployees() {
         numEmployees = 0; // Reset the count before traversal

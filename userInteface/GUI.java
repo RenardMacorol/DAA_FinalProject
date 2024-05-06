@@ -28,6 +28,8 @@ public class GUI implements ActionListener{
     
 
     Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
+    private JButton adminUpdateButton;
+    private JButton adminGenerateButton;
 
     public  GUI(TwoThreeTree tree, EmployeeDA employeeDA){
         this.tree = tree; 
@@ -100,6 +102,11 @@ public class GUI implements ActionListener{
             isInputValid.setBounds(500, 200, 300, 200);
             isInputValid.setText("Invalid Employee ID (Enter Numbers Only)");
             mainFrame.add(isInputValid);
+        }else{
+            JLabel isInputValid = new JLabel("");
+            isInputValid.setBounds(500, 200, 300, 200);
+            isInputValid.setText("Employee Not Found");
+            mainFrame.add(isInputValid);
         }
         
         
@@ -159,23 +166,31 @@ public class GUI implements ActionListener{
     public void adminUI(int type){
         mainFrame.getContentPane().removeAll();
         employeeTextField = new JTextField("Please Enter the employee no to proceed");
-        employeeTextField.setBounds(500, 20, 300, 50);
+        employeeTextField.setBounds(200, 20, 300, 50);
         
         searchEmployeeButton = new JButton("Search");
-        searchEmployeeButton.setBounds(800, 20, 100, 50);
+        searchEmployeeButton.setBounds(500, 20, 100, 50);
         searchEmployeeButton.addActionListener(this);
 
         adminInsertButton = new JButton("Insert new Employee");
-        adminInsertButton.setBounds(900, 20, 200, 50);
+        adminInsertButton.setBounds(600, 20, 200, 50);
         adminInsertButton.addActionListener(this);
         
         adminDeleteButoon = new JButton("Delete");
-        adminDeleteButoon.setBounds(1100, 20, 100, 50);
+        adminDeleteButoon.setBounds(700, 20, 100, 50);
         adminDeleteButoon.addActionListener(this);
 
         adminVisualButton = new JButton("Visual Tree");
-        adminVisualButton.setBounds(1200, 20, 100, 50);
+        adminVisualButton.setBounds(800, 20, 100, 50);
         adminVisualButton.addActionListener(this);
+
+        adminUpdateButton = new JButton("Update Employee");
+        adminUpdateButton.setBounds(900, 20, 200, 50);
+        adminUpdateButton.addActionListener(this);
+
+        adminGenerateButton = new JButton("Generate Report");
+        adminGenerateButton.setBounds(1100, 20, 200, 50);
+        adminGenerateButton.addActionListener(this);
         
         if(type ==1){
             JLabel isInputValid = new JLabel("");
@@ -209,7 +224,9 @@ public class GUI implements ActionListener{
         // Add the table to a scroll pane and set its bounds
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(50, 100, 1400, 600);
-       
+
+        mainFrame.add(adminGenerateButton);
+        mainFrame.add(adminUpdateButton);
         mainFrame.add(adminVisualButton);
         mainFrame.add(scrollPane);
         mainFrame.add(adminInsertButton);
@@ -232,6 +249,8 @@ public class GUI implements ActionListener{
                 Node resultNode = tree.search(searchID);
                 if (resultNode != null) {
                     EmployeeResult(resultNode, searchID);
+                }else{
+                    employeeUI(0);
                 }
             } else {
                 employeeUI(1);
@@ -246,7 +265,10 @@ public class GUI implements ActionListener{
             // Handle admin insert button action
             int latestEmpNo = employeeDA.getLatestEmpNo(); // lites empNO shuta
             new InsertEmpGUI(latestEmpNo); 
-        } else if (e.getSource() == adminVisualButton) {
+        }else if (e.getSource() == adminGenerateButton) {
+            // Handle employee button action
+            GenerateReportUI generate = new GenerateReportUI(mainFrame,tree);
+        }  else if (e.getSource() == adminVisualButton) {
             // Handle admin visual button action
             visualizeTree();
         } else if (e.getSource() == backButton) {
