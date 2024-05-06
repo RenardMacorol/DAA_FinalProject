@@ -3,9 +3,6 @@ package userInteface;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import dataStructure.TwoThreeTree;
 import employeePackage.Employee;
 
@@ -16,8 +13,8 @@ public class EmployeeDA {
         this.filename = filename;
     }
 
+    // Method to read employee data from the CSV file and populate a 2-3 tree
     public TwoThreeTree readFromCSV() {
-        
         TwoThreeTree tree = new TwoThreeTree(3);
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -41,5 +38,31 @@ public class EmployeeDA {
             e.printStackTrace();
         }
         return tree;
+    }
+
+    
+    public void writeToCSV(Employee employee) {
+
+    }
+
+    // Method for latest empNo chuchu
+    public int getLatestEmpNo() {
+        int latestEmpNo = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 6) {
+                    int empNo = Integer.parseInt(parts[0]);
+                    if (empNo > latestEmpNo) {
+                        latestEmpNo = empNo;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading from CSV file: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return latestEmpNo;
     }
 }

@@ -24,12 +24,14 @@ public class GUI implements ActionListener{
     JTextField employeeTextField;
     JLabel isInputValid;
     private TwoThreeTree tree;
+    private EmployeeDA employeeDA;
     
 
     Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
 
-    public  GUI(TwoThreeTree tree){
+    public  GUI(TwoThreeTree tree, EmployeeDA employeeDA){
         this.tree = tree; 
+        this.employeeDA = employeeDA;
       mainFrame = new JFrame("DAA Final Term");
       mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       mainFrame.setVisible(true);
@@ -223,40 +225,40 @@ public class GUI implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == searchEmployeeButton){
-           
-            if(inputSearchVerifyer(employeeTextField.getText())==true){
-                
+        if (e.getSource() == searchEmployeeButton) {
+            // Handle search action
+            if (inputSearchVerifyer(employeeTextField.getText())) {
                 int searchID = Integer.parseInt(employeeTextField.getText());
                 Node resultNode = tree.search(searchID);
-                if(tree.search(searchID)!=null){
+                if (resultNode != null) {
                     EmployeeResult(resultNode, searchID);
                 }
-            }else{
+            } else {
                 employeeUI(1);
             }
-            
-        }
-        if (e.getSource() == employeeButton){
+        } else if (e.getSource() == employeeButton) {
+            // Handle employee button action
             employeeUI(0);
-        }  
-        if(e.getSource() == adminButton) {
+        } else if (e.getSource() == adminButton) {
+            // Handle admin button action
             adminUI(0);
-        }
-        
-        if(e.getSource() == adminVisualButton){
+        } else if (e.getSource() == adminInsertButton) {
+            // Handle admin insert button action
+            int latestEmpNo = employeeDA.getLatestEmpNo(); // lites empNO shuta
+            new InsertEmpGUI(latestEmpNo); 
+        } else if (e.getSource() == adminVisualButton) {
+            // Handle admin visual button action
             visualizeTree();
+        } else if (e.getSource() == backButton) {
+            // Handle back button action
+            mainFrame.getContentPane().removeAll();
+            welcomeMessage();
+            interfaceButtons();
+            mainFrame.revalidate();
+            mainFrame.repaint();
         }
-        else if (e.getSource() == backButton) 
-        {
-                mainFrame.getContentPane().removeAll();
-                welcomeMessage();
-                interfaceButtons();
-                mainFrame.revalidate();
-                mainFrame.repaint();
-        }
-       
     }
+    
 
 
     public Object[][] getEmployeeDataFromTree(TwoThreeTree tree) {
