@@ -322,7 +322,7 @@ public class GUI implements ActionListener {
             new InsertEmpGUI(latestEmpNo);
         } else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
-            GenerateReportUI generate = new GenerateReportUI(mainFrame, tree);
+            GenerateReportUI generate = new GenerateReportUI(tree);
         } else if (e.getSource() == adminUpdateButton) {
             UpdateEmpGUI updateEmpGUI = new UpdateEmpGUI(mainFrame, tree, decimalFormat);
         } else if (e.getSource() == backButton) {

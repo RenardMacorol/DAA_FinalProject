@@ -10,11 +10,19 @@ import javax.swing.JLabel;
 import dataStructure.TwoThreeTree;
 
 public class GenerateReportUI {
-    GenerateReportUI(JFrame frame,TwoThreeTree tree){
+    JFrame mainFrame;
+    GenerateReportUI(TwoThreeTree tree){
+        mainFrame = new JFrame("DAA Final Term");
+        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainFrame.setVisible(true);
+        mainFrame.setSize(1524, 864);
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setLayout(null);
         Font reportFont  = new Font("Verdana", Font.BOLD, 30);
         Font titleFont  = new Font("Verdana", Font.BOLD, 50);
         DecimalFormat decimalFormat = new DecimalFormat("$###,###.00");
-        frame.getContentPane().removeAll();
+        
         double totalSalary = tree.countSalary();
         JLabel generateReport = new JLabel("Company Generated Report");
         JLabel totalSalaryMonthly = new JLabel("Total Salary Monthly: "+ decimalFormat.format(totalSalary));
@@ -38,16 +46,17 @@ public class GenerateReportUI {
         meanSalary.setFont(reportFont);
         medianSalary.setFont(reportFont);
 
-        frame.add(generateReport);
-        frame.add(totalSalaryMonthly);
-        frame.add(totalSalaryYearly);
-        frame.add(totalEmployee);
-        frame.add(meanSalary);
-        frame.add(medianSalary);
+        mainFrame.add(generateReport);
+        mainFrame.add(totalSalaryMonthly);
+        mainFrame.add(totalSalaryYearly);
+        mainFrame.add(totalEmployee);
+        mainFrame.add(meanSalary);
+        mainFrame.add(medianSalary);
         
-        frame.revalidate();
-        frame.repaint();
+      
     }
+
+     
 
     
 
