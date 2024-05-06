@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import dataStructure.*;
 import employeePackage.Employee;
-import employeePackage.EmployeeDelete;
+//import employeePackage.EmployeeDelete;
 
 
 public class GUI implements ActionListener {
@@ -28,6 +28,7 @@ public class GUI implements ActionListener {
     JLabel isInputValid;
     private TwoThreeTree tree;
     private EmployeeDA employeeDA;
+    private JButton searchAdminButton;
 
 
     DecimalFormat decimalFormat = new DecimalFormat("$###.00");
@@ -87,7 +88,9 @@ public class GUI implements ActionListener {
 
     }
 
+    
     //DELETE
+    /* 
     private void deleteUI() {
         int choice = 0;
 
@@ -103,30 +106,44 @@ public class GUI implements ActionListener {
 
 
     }
+    */
     //DELETE
 
     private void employeeUI(int type) {
         mainFrame.getContentPane().removeAll();
+        JLabel message = new JLabel("Welcome please enter the employee ID to verify your information");
+        JLabel messageSecond = new JLabel("If there's a problem regarding your information, please contact the admin as soon as possible.");
+
+        message.setBounds(10, -100, 1200, 300);
+        messageSecond.setBounds(10, -50, 1500, 300);
+        message.setFont(new Font("Verdana", Font.PLAIN, 30));
+        messageSecond.setFont(new Font("Verdana", Font.PLAIN,30));
         employeeTextField = new JTextField("Please Enter the employee no to proceed");
-        employeeTextField.setBounds(500, 200, 300, 50);
+        employeeTextField.setBounds(50, 400, 700, 100);
+        employeeTextField.setFont(new Font("Verdana", Font.PLAIN, 30));
 
         searchEmployeeButton = new JButton("Search");
-        searchEmployeeButton.setBounds(900, 200, 100, 50);
+        searchEmployeeButton.setBounds(900, 400, 300, 100);
+        searchEmployeeButton.setFont(new Font("Verdana", Font.PLAIN, 30));
         searchEmployeeButton.addActionListener(this);
         if (type == 1) {
             JLabel isInputValid = new JLabel("");
-            isInputValid.setBounds(500, 200, 300, 200);
+            isInputValid.setBounds(500, 200, 1000, 200);
             isInputValid.setText("Invalid Employee ID (Enter Numbers Only)");
+            isInputValid.setFont(new Font("Verdana", Font.PLAIN, 30));
             mainFrame.add(isInputValid);
         }
         if (type == 2) {
             JLabel isInputValid = new JLabel("");
+            isInputValid.setBounds(500, 200, 800, 200);
             isInputValid.setBounds(500, 200, 300, 200);
             isInputValid.setText("Employee Not Found");
+            isInputValid.setFont(new Font("Verdana", Font.PLAIN, 30));
             mainFrame.add(isInputValid);
         }
 
-
+        mainFrame.add(message);
+        mainFrame.add(messageSecond);
         mainFrame.add(searchEmployeeButton);
         mainFrame.add(employeeTextField);
         addBackButtons();
@@ -142,15 +159,23 @@ public class GUI implements ActionListener {
         JTextField resultEmployeeDepartment = new JTextField();
         JTextField resultEmployeeJobDesc = new JTextField();
 
-        resultEmployeeID.setBounds(100, 100, 500, 30);
+        Font resultfont = new Font("Verdana", Font.PLAIN, 30);
+
+        resultEmployeeID.setFont(resultfont);
+        resultEmployeeName.setFont(resultfont);
+        resultEmployeeSalary.setFont(resultfont);
+        resultEmployeeDepartment.setFont(resultfont);
+        resultEmployeeJobDesc.setFont(resultfont);
+
+        resultEmployeeID.setBounds(100, 100, 800, 100);
         resultEmployeeID.setEditable(false);
-        resultEmployeeName.setBounds(100, 200, 500, 30);
+        resultEmployeeName.setBounds(100, 200, 800, 100);
         resultEmployeeName.setEditable(false);
-        resultEmployeeSalary.setBounds(100, 300, 500, 30);
+        resultEmployeeSalary.setBounds(100, 300, 800, 100);
         resultEmployeeSalary.setEditable(false);
-        resultEmployeeDepartment.setBounds(100, 400, 500, 30);
+        resultEmployeeDepartment.setBounds(100, 400, 800, 100);
         resultEmployeeDepartment.setEditable(false);
-        resultEmployeeJobDesc.setBounds(100, 500, 500, 30);
+        resultEmployeeJobDesc.setBounds(100, 500, 800, 100);
         resultEmployeeJobDesc.setEditable(false);
         for (int i = 0; i < resultNode.numKeys; i++) {
             Employee employee = resultNode.keys[i];
@@ -179,15 +204,15 @@ public class GUI implements ActionListener {
         return str.matches("\\d+");
     }
 
-    public void adminUI(int type) {
+    public void adminUI() {
         mainFrame.getContentPane().removeAll();
         employeeTextField = new JTextField("Please Enter the employee no to proceed");
         employeeTextField.setBounds(200, 20, 300, 50);
 
-        searchEmployeeButton = new JButton("Search");
-        searchEmployeeButton.setBounds(500, 20, 100, 50);
-        searchEmployeeButton.addActionListener(this);
-
+        searchAdminButton = new JButton("Search");
+        searchAdminButton.setBounds(500, 20, 100, 50);
+        searchAdminButton.addActionListener(this);
+       
         adminInsertButton = new JButton("Insert new Employee");
         adminInsertButton.setBounds(600, 20, 200, 50);
         adminInsertButton.addActionListener(this);
@@ -208,12 +233,7 @@ public class GUI implements ActionListener {
         adminGenerateButton.setBounds(1200, 20, 200, 50);
         adminGenerateButton.addActionListener(this);
 
-        if (type == 1) {
-            JLabel isInputValid = new JLabel("");
-            isInputValid.setBounds(500, 200, 300, 200);
-            isInputValid.setText("Invalid Employee ID (Enter Numbers Only)");
-            mainFrame.add(isInputValid);
-        }
+       
 
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
@@ -247,7 +267,7 @@ public class GUI implements ActionListener {
         mainFrame.add(scrollPane);
         mainFrame.add(adminInsertButton);
         mainFrame.add(adminDeleteButoon);
-        mainFrame.add(searchEmployeeButton);
+        mainFrame.add(searchAdminButton);
         mainFrame.add(employeeTextField);
         addBackButtons();
         mainFrame.revalidate();
@@ -270,17 +290,32 @@ public class GUI implements ActionListener {
             } else {
                 employeeUI(1);
             }
-        } else if (e.getSource() == employeeButton) {
+
+        } else if(e.getSource() == searchAdminButton){
+            // Handle search action
+            if (inputSearchVerifyer(employeeTextField.getText())) {
+                int searchID = Integer.parseInt(employeeTextField.getText());
+                Node resultNode = tree.search(searchID);
+                if (resultNode != null) {
+                    EmployeeResult(resultNode, searchID);
+                }else{
+                    JOptionPane.showMessageDialog(mainFrame, "Employee Not Found","Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(mainFrame, "Invalid Employee ID (Enter Numbers Only)","Error",JOptionPane.ERROR_MESSAGE);
+            }       
+        }
+        else if (e.getSource() == employeeButton) {
             // Handle employee button action
             employeeUI(0);
 
         } else if (e.getSource() == adminDeleteButoon) {
             /// Delete
-            deleteUI();
+            //deleteUI();
             /// Delete
         } else if (e.getSource() == adminButton) {
             // Handle admin button action
-            adminUI(0);
+            adminUI();
         } else if (e.getSource() == adminInsertButton) {
             // Handle admin insert button action
             int latestEmpNo = employeeDA.getLatestEmpNo(); // lites empNO shuta
