@@ -98,9 +98,6 @@ public class GUI implements ActionListener {
 
         if (choice == 0) {
             new EmployeeDelete().deleteEmployee(empno);
-
-            // Need Refresh UI
-
         }
 
 
