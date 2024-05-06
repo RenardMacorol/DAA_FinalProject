@@ -45,6 +45,10 @@ public class EmployeeDA {
 
     }
 
+   public void deleteToCSV(String empno) {
+
+   }
+
     // Method for latest empNo chuchu
     public int getLatestEmpNo() {
         int latestEmpNo = 0;

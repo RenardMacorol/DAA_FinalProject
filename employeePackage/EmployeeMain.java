@@ -46,4 +46,10 @@ public class EmployeeMain {
 
         scanner.close();
     }
+    public void deleteEmployee(String empno)
+    {
+        //String filename = "/workspaces/DAA_FinalProject/employeePackage/emp.csv";
+        String filename = "employeePackage/emp.csv";
+       new EmployeeManager().deleteToCSV(filename, empno);
+    }
 }
