@@ -83,7 +83,7 @@ To run the Employee Management System, follow these steps:
 | Leader | Macorol, Renard B.      | [RenardMacorol](https://github.com/RenardMacorol) |
 | Member | Sevilla, Vince Arnold Z.| [VinceSevilla](https://github.com/VinceSevilla) |
 | Member | Pastores, Jabez Villan Cruz | [JabezPastores](https://github.com/JabezPastores) |
-| Member | Lorice Edward Angel     | [nngel](https://github.com/nngel) |
+| Member | Lorica Edward Angel     | [nngel](https://github.com/nngel) |
 
 
 
