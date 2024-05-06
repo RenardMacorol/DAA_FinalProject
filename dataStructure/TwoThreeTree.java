@@ -1,4 +1,8 @@
 package dataStructure;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import employeePackage.*;
 
 public class TwoThreeTree {
@@ -75,8 +79,39 @@ public class TwoThreeTree {
             }
         }
     }
+    private ArrayList<Double> salaries = new ArrayList<>();
+    public Double getMedianSalary(){
+        collectSalary(root);
+        Collections.sort(salaries);
 
-    
+        int size = salaries.size();
+        if (size == 0) {
+            return 0.00; // Return 0 if there are no salaries
+        }
+
+        if (size % 2 == 0) {
+            // If the number of salaries is even, calculate the average of the two middle values
+            int middleIndex1 = size / 2 - 1;
+            int middleIndex2 = size / 2;
+            return (salaries.get(middleIndex1) + salaries.get(middleIndex2)) / 2.0;
+        } else {
+            // If the number of salaries is odd, return the middle value
+            return salaries.get(size / 2);
+        }
+    }
+    private void collectSalary(Node node) {
+        if (node != null) {
+            for (int i = 0; i < node.numKeys; i++) {
+                salaries.add(node.keys[i].getSalary());
+            }
+
+            // Recursively collect salaries from children nodes
+            for (int i = 0; i < node.numKeys + 1; i++) {
+                collectSalary(node.children[i]);
+            }
+        }
+    }
+
     // Method to count the number of employees in the tree
     public int countEmployees() {
         numEmployees = 0; // Reset the count before traversal
@@ -96,4 +131,6 @@ public class TwoThreeTree {
             }
         }
     }
+
+    
 }

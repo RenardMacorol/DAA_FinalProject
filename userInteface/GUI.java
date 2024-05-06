@@ -2,6 +2,7 @@ package userInteface;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.*;
 
@@ -26,7 +27,8 @@ public class GUI implements ActionListener{
     private TwoThreeTree tree;
     private EmployeeDA employeeDA;
     
-
+    
+    DecimalFormat decimalFormat = new DecimalFormat("$###.00");
     Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
     private JButton adminUpdateButton;
     private JButton adminGenerateButton;
@@ -78,12 +80,7 @@ public class GUI implements ActionListener{
 
     private void visualizeTree() {
         mainFrame.getContentPane().removeAll();
-        //JLabel display = new JLabel("Tree Visual");
-        //display.setBounds(500, 500, 300, 300);
-        //mainFrame.add(display);
-        TwoThreeTreeVisualizer visualizer = new TwoThreeTreeVisualizer();
-        visualizer.TreeVisualization(tree);
-        mainFrame.add(visualizer);
+        
         mainFrame.revalidate();
         mainFrame.repaint();
         
@@ -102,7 +99,7 @@ public class GUI implements ActionListener{
             isInputValid.setBounds(500, 200, 300, 200);
             isInputValid.setText("Invalid Employee ID (Enter Numbers Only)");
             mainFrame.add(isInputValid);
-        }else{
+        }if(type ==2){
             JLabel isInputValid = new JLabel("");
             isInputValid.setBounds(500, 200, 300, 200);
             isInputValid.setText("Employee Not Found");
@@ -141,7 +138,7 @@ public class GUI implements ActionListener{
             if(employee.getEmpNo() == searchID){
                 resultEmployeeID.setText("Employee ID: " + employee.getEmpNo() );
                 resultEmployeeName.setText("Name: "+ employee.getLastName()+ ", " +employee.getFirstName());
-                resultEmployeeSalary.setText("Monthly Salary: " + employee.getSalary() );
+                resultEmployeeSalary.setText("Monthly Salary: " + decimalFormat.format(employee.getSalary()) );
                 resultEmployeeDepartment.setText("Department: " + employee.getDepartment());
                 resultEmployeeJobDesc.setText("Job Description: " + employee.getJobDesc());
             }
@@ -250,7 +247,7 @@ public class GUI implements ActionListener{
                 if (resultNode != null) {
                     EmployeeResult(resultNode, searchID);
                 }else{
-                    employeeUI(0);
+                    employeeUI(2);
                 }
             } else {
                 employeeUI(1);
@@ -323,7 +320,7 @@ private int collectEmployeeData(Node node, Object[][] employeeData, int index) {
             employeeData[index][0] = employee.getEmpNo();
             employeeData[index][1] = employee.getLastName();
             employeeData[index][2] = employee.getFirstName();
-            employeeData[index][3] = employee.getSalary();
+            employeeData[index][3] = decimalFormat.format(employee.getSalary());
             employeeData[index][4] = employee.getDepartment();
             employeeData[index][5] = employee.getJobDesc();
             index++;
