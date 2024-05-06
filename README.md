@@ -63,6 +63,13 @@ To run the Employee Management System, follow these steps:
     ```
 
 ### Contributors
-Leader  Macorol, Renard B.
+
+| Role   | Name                    |
+|--------|-------------------------|
+| Leader | Macorol, Renard B.      |
+| Member | Sevilla, Vince Arnold Z.|
+| Member | Pastores, Jabez Villan Cruz |
+| Member | Lorice Edward Angel     |
+
 
 
