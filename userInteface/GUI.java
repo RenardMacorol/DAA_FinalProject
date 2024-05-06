@@ -29,10 +29,11 @@ public class GUI implements ActionListener{
     
     
     DecimalFormat decimalFormat = new DecimalFormat("$###.00");
-    Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
+    
     private JButton adminUpdateButton;
     private JButton adminGenerateButton;
     private JButton searchAdminButton;
+    private Font buttonFonts=new Font("Verdana", Font.PLAIN, 50);;
 
     public  GUI(TwoThreeTree tree, EmployeeDA employeeDA){
         this.tree = tree; 
@@ -293,7 +294,9 @@ public class GUI implements ActionListener{
             new InsertEmpGUI(latestEmpNo); 
         }else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
+            addBackButtons();
             GenerateReportUI generate = new GenerateReportUI(mainFrame,tree);
+            
         }  else if (e.getSource() == adminUpdateButton) {
             UpdateEmpGUI updateEmpGUI = new UpdateEmpGUI(mainFrame, tree,decimalFormat);
         } else if (e.getSource() == backButton) {
