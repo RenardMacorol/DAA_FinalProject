@@ -62,7 +62,7 @@ public class TwoThreeTree {
         return numEmployees;
     }
 
-    // Helper method to recursively count employees in a subtree
+    // eto yung method na recursively parang sa binary
     private void countEmployeesInSubtree(Node node) {
         if (node != null) {
             // Add the number of keys in the current node to the total count

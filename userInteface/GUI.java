@@ -74,7 +74,11 @@ public class GUI implements ActionListener{
 
     private void visualizeTree() {
         mainFrame.getContentPane().removeAll();
-        TwoThreeTreeVisualizer visualizer = new TwoThreeTreeVisualizer(tree);
+        //JLabel display = new JLabel("Tree Visual");
+        //display.setBounds(500, 500, 300, 300);
+        //mainFrame.add(display);
+        TwoThreeTreeVisualizer visualizer = new TwoThreeTreeVisualizer();
+        visualizer.TreeVisualization(tree);
         mainFrame.add(visualizer);
         mainFrame.revalidate();
         mainFrame.repaint();

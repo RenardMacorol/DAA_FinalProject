@@ -5,7 +5,7 @@ public class Node {
     public Employee[] keys;
     public Node[] children;
     public int numKeys;
-    boolean leaf;
+    public boolean leaf;
     int t; // minimum degree
 
     // Constructor
