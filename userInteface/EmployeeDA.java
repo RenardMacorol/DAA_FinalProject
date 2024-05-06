@@ -1,8 +1,8 @@
 package userInteface;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
+
 import dataStructure.TwoThreeTree;
 import employeePackage.Employee;
 
@@ -45,9 +45,62 @@ public class EmployeeDA {
 
     }
 
-   public void deleteToCSV(String empno) {
+    //Deletion
+    public void deleteToCSV(String empno) {
+        String tempfile = "temp.csv";
 
-   }
+        File oldFile = new File(filename);
+        File newFile = new File(tempfile);
+
+        try {
+            FileWriter fw = new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            Scanner sc = new Scanner(oldFile);
+
+            while (sc.hasNextLine()) {
+
+                String read = sc.nextLine();
+                Scanner strRead = new Scanner(read);
+
+                String rread = "";
+
+                if(strRead.hasNext())
+                {
+                    rread = strRead.next();
+                    rread = rread.replace(",","");
+
+                    System.out.println("INPUT:"+empno);
+
+                    if(!rread.equals(empno))
+                    {
+                        System.out.println(rread);
+                        pw.println(read);
+                    }
+                }
+
+
+                strRead.close();
+            }
+
+            pw.flush();
+            pw.close();
+            sc.close();
+            bw.close();
+            fw.close();
+
+            oldFile.delete();
+            File dump = new File(filename);
+            newFile.renameTo(dump);
+
+            System.out.println("Delete Complete");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     // Method for latest empNo chuchu
     public int getLatestEmpNo() {

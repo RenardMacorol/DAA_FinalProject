@@ -88,25 +88,22 @@ public class GUI implements ActionListener {
 
     }
 
-    
+
     //DELETE
-    /* 
     private void deleteUI() {
         int choice = 0;
-
 
         String empno = JOptionPane.showInputDialog("Enter Employee Number: ");
         choice = JOptionPane.showConfirmDialog(new JOptionPane(), "Are you sure this is correct?");
         System.out.println(choice);
 
         if (choice == 0) {
-            new EmployeeDelete().deleteEmployee(empno);
-
+            //this.employeeDA.deleteToCSV(empno);
+            System.out.println("Delete Done");
         }
 
 
     }
-    */
     //DELETE
 
     private void employeeUI(int type) {
@@ -212,7 +209,7 @@ public class GUI implements ActionListener {
         searchAdminButton = new JButton("Search");
         searchAdminButton.setBounds(500, 20, 100, 50);
         searchAdminButton.addActionListener(this);
-       
+
         adminInsertButton = new JButton("Insert new Employee");
         adminInsertButton.setBounds(600, 20, 200, 50);
         adminInsertButton.addActionListener(this);
@@ -233,7 +230,7 @@ public class GUI implements ActionListener {
         adminGenerateButton.setBounds(1200, 20, 200, 50);
         adminGenerateButton.addActionListener(this);
 
-       
+
 
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
@@ -274,7 +271,6 @@ public class GUI implements ActionListener {
         mainFrame.repaint();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == searchEmployeeButton) {
@@ -303,16 +299,16 @@ public class GUI implements ActionListener {
                 }
             }else{
                 JOptionPane.showMessageDialog(mainFrame, "Invalid Employee ID (Enter Numbers Only)","Error",JOptionPane.ERROR_MESSAGE);
-            }       
+            }
         }
         else if (e.getSource() == employeeButton) {
             // Handle employee button action
             employeeUI(0);
 
         } else if (e.getSource() == adminDeleteButoon) {
-            /// Delete
-            //deleteUI();
-            /// Delete
+
+            deleteUI();
+
         } else if (e.getSource() == adminButton) {
             // Handle admin button action
             adminUI();
