@@ -265,9 +265,8 @@ public class GUI implements ActionListener{
         }else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
             GenerateReportUI generate = new GenerateReportUI(mainFrame,tree);
-        }  else if (e.getSource() == adminVisualButton) {
-            // Handle admin visual button action
-            visualizeTree();
+        }  else if (e.getSource() == adminUpdateButton) {
+            UpdateEmpGUI updateEmpGUI = new UpdateEmpGUI(mainFrame, tree,decimalFormat);
         } else if (e.getSource() == backButton) {
             // Handle back button action
             mainFrame.getContentPane().removeAll();
