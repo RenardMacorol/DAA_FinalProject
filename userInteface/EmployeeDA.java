@@ -41,9 +41,7 @@ public class EmployeeDA {
     }
 
     
-    public void writeToCSV(Employee employee) {
-
-    }
+    
 
     //Deletion
     public void deleteToCSV(String empno) {
