@@ -62,9 +62,9 @@ public class EmployeeDA {
             while (sc.hasNextLine()) {
 
                 String read = sc.nextLine();
-                read = read.replace(","," ");
+                String readnospace = read.replace(","," ");
 
-                Scanner strRead = new Scanner(read);
+                Scanner strRead = new Scanner(readnospace);
 
                 String rread = "";
 
