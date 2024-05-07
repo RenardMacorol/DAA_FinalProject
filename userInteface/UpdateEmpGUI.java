@@ -8,7 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 import dataStructure.Node;
 import dataStructure.TwoThreeTree;
 import employeePackage.Employee;
@@ -97,15 +100,15 @@ public class UpdateEmpGUI {
 
     private void updateEmployeeCSV(int empNo, String updatedEmployeeData) {
         String csvFile = "employeePackage\\emp.csv";
-        String tempFile = "temp.csv";
-
+        String tempFile = "employeePackage\\temp.csv";
+    
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile));
              BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
-
+    
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(", ");
-                int employeeID = Integer.parseInt(parts[0].trim());
+                int employeeID = Integer.parseInt(parts[0].split(",")[0].trim());
                 if (employeeID == empNo) {
                     bw.write(updatedEmployeeData);
                 } else {
@@ -116,13 +119,22 @@ public class UpdateEmpGUI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        File oldFile = new File(csvFile);
-        File newFile = new File(tempFile);
-        if (newFile.renameTo(oldFile)) {
-            System.out.println("CSV file updated successfully.");
+    
+        // Delete the original file
+        File originalFile = new File(csvFile);
+        if (originalFile.delete()) {
+            // Rename the temporary file to the original file name
+            File temp = new File(tempFile);
+            if (temp.renameTo(originalFile)) {
+                System.out.println("CSV file updated successfully.");
+            } else {
+                System.out.println("Failed to update CSV file.");
+            }
         } else {
             System.out.println("Failed to update CSV file.");
         }
     }
+    
+    
+    
 }
