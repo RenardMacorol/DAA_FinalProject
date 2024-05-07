@@ -25,6 +25,7 @@ public class GUI implements ActionListener {
     JButton adminVisualButton;
     JTextField employeeTextField;
     JLabel isInputValid;
+    DefaultTableModel tableModel;
     private TwoThreeTree tree;
     private EmployeeDA employeeDA;
     private JButton searchAdminButton;
@@ -101,7 +102,21 @@ public class GUI implements ActionListener {
             System.out.println("Delete Done");
         }
 
+        // Table deletion
 
+        for(int i = 0; i < tableModel.getRowCount(); i++)
+        {
+            String empnoJTable = tableModel.getValueAt(i,0).toString();
+            System.out.println("TABLE CONTENT: "+empnoJTable);
+
+            if(empnoJTable.equals(empno))
+            {
+                System.out.println("Table found: "+ i);
+                tableModel.removeRow(i);
+                break;
+            }
+
+        }
     }
     //DELETE
 
@@ -231,7 +246,7 @@ public class GUI implements ActionListener {
 
 
 
-        DefaultTableModel tableModel = new DefaultTableModel() {
+        tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Make all cells uneditable
