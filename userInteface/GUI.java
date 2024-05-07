@@ -22,7 +22,7 @@ public class GUI implements ActionListener {
     JButton searchEmployeeButton;
     JButton adminInsertButton;
     JButton adminDeleteButoon;
-    JButton adminVisualButton;
+    //JButton adminVisualButton;
     JTextField employeeTextField;
     JLabel isInputValid;
     DefaultTableModel tableModel;
@@ -77,15 +77,6 @@ public class GUI implements ActionListener {
         backButton.setFont(buttonFonts);
         backButton.addActionListener(this);
         mainFrame.add(backButton);
-    }
-
-
-    private void visualizeTree() {
-        mainFrame.getContentPane().removeAll();
-
-        mainFrame.revalidate();
-        mainFrame.repaint();
-
     }
 
 
@@ -232,18 +223,19 @@ public class GUI implements ActionListener {
         adminDeleteButoon.setBounds(800, 20, 100, 50);
         adminDeleteButoon.addActionListener(this);
 
+       /* 
         adminVisualButton = new JButton("Visual Tree");
         adminVisualButton.setBounds(900, 20, 100, 50);
         adminVisualButton.addActionListener(this);
-
+         */ 
         adminUpdateButton = new JButton("Update Employee");
-        adminUpdateButton.setBounds(1000, 20, 200, 50);
+        adminUpdateButton.setBounds(900, 20, 200, 50);
         adminUpdateButton.addActionListener(this);
 
         adminGenerateButton = new JButton("Generate Report");
-        adminGenerateButton.setBounds(1200, 20, 200, 50);
+        adminGenerateButton.setBounds(1100, 20, 200, 50);
         adminGenerateButton.addActionListener(this);
-
+       
 
 
         tableModel = new DefaultTableModel() {
@@ -274,7 +266,7 @@ public class GUI implements ActionListener {
 
         mainFrame.add(adminGenerateButton);
         mainFrame.add(adminUpdateButton);
-        mainFrame.add(adminVisualButton);
+        //mainFrame.add(adminVisualButton);
         mainFrame.add(scrollPane);
         mainFrame.add(adminInsertButton);
         mainFrame.add(adminDeleteButoon);
@@ -330,6 +322,7 @@ public class GUI implements ActionListener {
             // Handle admin insert button action
             int latestEmpNo = employeeDA.getLatestEmpNo(); // lites empNO shuta
             new InsertEmpGUI(latestEmpNo);
+            
         } else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
             GenerateReportUI generate = new GenerateReportUI(tree);
@@ -357,10 +350,7 @@ public class GUI implements ActionListener {
         return employeeData;
     }
 
-    // Helper method to calculate the size of the tree
-    private int treeSize(TwoThreeTree tree) {
-        return treeSizeHelper(tree.root);
-    }
+    
 
     private int treeSizeHelper(Node node) {
         if (node == null) {

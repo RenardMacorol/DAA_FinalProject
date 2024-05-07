@@ -11,6 +11,14 @@ import dataStructure.TwoThreeTree;
 
 public class GenerateReportUI {
     JFrame mainFrame;
+    TwoThreeTree tree;
+    double totalSalary;
+    JLabel generateReport;
+    JLabel totalSalaryMonthly;
+    JLabel totalSalaryYearly;
+    JLabel totalEmployee;
+    JLabel meanSalary;
+    JLabel medianSalary;
     GenerateReportUI(TwoThreeTree tree){
         mainFrame = new JFrame("DAA Final Term");
         mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -23,13 +31,13 @@ public class GenerateReportUI {
         Font titleFont  = new Font("Verdana", Font.BOLD, 50);
         DecimalFormat decimalFormat = new DecimalFormat("$###,###.00");
         
-        double totalSalary = tree.countSalary();
-        JLabel generateReport = new JLabel("Company Generated Report");
-        JLabel totalSalaryMonthly = new JLabel("Total Salary Monthly: "+ decimalFormat.format(totalSalary));
-        JLabel totalSalaryYearly = new JLabel("Total Salary Yearly: "+ decimalFormat.format(totalSalary*12) );
-        JLabel totalEmployee = new JLabel("Total Employees: "+ tree.countEmployees());
-        JLabel meanSalary = new JLabel("Mean salary: "+ decimalFormat.format(tree.countSalary()/tree.countEmployees()));
-        JLabel medianSalary = new JLabel("Median salary: "+ decimalFormat.format(tree.getMedianSalary()));
+        totalSalary = tree.countSalary();
+        generateReport = new JLabel("Company Generated Report");
+        totalSalaryMonthly = new JLabel("Total Salary Monthly: "+ decimalFormat.format(totalSalary));
+        totalSalaryYearly = new JLabel("Total Salary Yearly: "+ decimalFormat.format(totalSalary*12) );
+        totalEmployee = new JLabel("Total Employees: "+ tree.countEmployees());
+        meanSalary = new JLabel("Mean salary: "+ decimalFormat.format(tree.countSalary()/tree.countEmployees()));
+        medianSalary = new JLabel("Median salary: "+ decimalFormat.format(tree.getMedianSalary()));
         
         generateReport.setBounds(300, -150, 1000, 500);
         totalSalaryMonthly.setBounds(200, 20, 800, 300);
@@ -55,6 +63,7 @@ public class GenerateReportUI {
         
       
     }
+    
 
      
 
