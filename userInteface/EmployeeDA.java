@@ -62,6 +62,8 @@ public class EmployeeDA {
             while (sc.hasNextLine()) {
 
                 String read = sc.nextLine();
+                read = read.replace(","," ");
+
                 Scanner strRead = new Scanner(read);
 
                 String rread = "";
@@ -69,9 +71,6 @@ public class EmployeeDA {
                 if(strRead.hasNext())
                 {
                     rread = strRead.next();
-                    rread = rread.replace(",","");
-
-                    System.out.println("INPUT:"+empno);
 
                     if(!rread.equals(empno))
                     {

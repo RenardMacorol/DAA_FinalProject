@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 import dataStructure.*;
 import employeePackage.Employee;
-//import employeePackage.EmployeeDelete;
 
 
 public class GUI implements ActionListener {
@@ -98,7 +97,7 @@ public class GUI implements ActionListener {
         System.out.println(choice);
 
         if (choice == 0) {
-            //this.employeeDA.deleteToCSV(empno);
+            this.employeeDA.deleteToCSV(empno);
             System.out.println("Delete Done");
         }
 
