@@ -22,7 +22,7 @@ public class GUI implements ActionListener {
     JButton searchEmployeeButton;
     JButton adminInsertButton;
     JButton adminDeleteButoon;
-    //JButton adminVisualButton;
+    JButton adminVisualButton;
     JTextField employeeTextField;
     JLabel isInputValid;
     DefaultTableModel tableModel;
@@ -223,17 +223,17 @@ public class GUI implements ActionListener {
         adminDeleteButoon.setBounds(800, 20, 100, 50);
         adminDeleteButoon.addActionListener(this);
 
-       /* 
+       
         adminVisualButton = new JButton("Visual Tree");
         adminVisualButton.setBounds(900, 20, 100, 50);
         adminVisualButton.addActionListener(this);
-         */ 
+        
         adminUpdateButton = new JButton("Update Employee");
-        adminUpdateButton.setBounds(900, 20, 200, 50);
+        adminUpdateButton.setBounds(1000, 20, 200, 50);
         adminUpdateButton.addActionListener(this);
 
         adminGenerateButton = new JButton("Generate Report");
-        adminGenerateButton.setBounds(1100, 20, 200, 50);
+        adminGenerateButton.setBounds(1200, 20, 200, 50);
         adminGenerateButton.addActionListener(this);
        
 
@@ -266,7 +266,7 @@ public class GUI implements ActionListener {
 
         mainFrame.add(adminGenerateButton);
         mainFrame.add(adminUpdateButton);
-        //mainFrame.add(adminVisualButton);
+        mainFrame.add(adminVisualButton);
         mainFrame.add(scrollPane);
         mainFrame.add(adminInsertButton);
         mainFrame.add(adminDeleteButoon);
@@ -328,6 +328,9 @@ public class GUI implements ActionListener {
             GenerateReportUI generate = new GenerateReportUI(tree);
         } else if (e.getSource() == adminUpdateButton) {
             UpdateEmpGUI updateEmpGUI = new UpdateEmpGUI(mainFrame, tree, decimalFormat);
+
+        }else if(e.getSource() == adminVisualButton){
+            System.out.println("Visual button clicked");
         } else if (e.getSource() == backButton) {
             // Handle back button action
             mainFrame.getContentPane().removeAll();
