@@ -1,6 +1,9 @@
 package userInteface;
 
+import dataStructure.TwoThreeTree;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +22,16 @@ public class InsertEmpGUI implements ActionListener {
     JButton submitButton;
     int latestEmpNo;
 
-    public InsertEmpGUI(int latestEmpNo) {
+    EmployeeDA eDA;
+    DefaultTableModel tableModel;
+    GUI gui;
+
+    public InsertEmpGUI(int latestEmpNo, DefaultTableModel tableModel, EmployeeDA eDA, GUI gui) {
         this.latestEmpNo = latestEmpNo;
+
+        this.tableModel = tableModel;
+        this.eDA = eDA;
+        this.gui = gui;
 
         insertFrame = new JFrame("Insert New Employee");
         insertFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,10 +95,28 @@ public class InsertEmpGUI implements ActionListener {
                 }
 
                 JOptionPane.showMessageDialog(insertFrame, "Employee added successfully.");
+
+                // Method to update Table Modal
+                updateTableModal(this.tableModel,this.eDA,this.gui);
+
+
                 insertFrame.dispose(); 
             } catch (NumberFormatException | IOException ex) {
                 JOptionPane.showMessageDialog(insertFrame, "Error: Invalid input format.");
             }
         }
+    }
+
+    // Method to update Table Modal to GUI
+    public DefaultTableModel updateTableModal(DefaultTableModel tableModel, EmployeeDA eda, GUI gui) {
+        tableModel.setRowCount(0);
+
+        TwoThreeTree tree = eda.readFromCSV();
+
+        Object[][] employeeData = gui.getEmployeeDataFromTree(tree);
+        for (Object[] row : employeeData) {
+            tableModel.addRow(row);
+        }
+        return tableModel;
     }
 }

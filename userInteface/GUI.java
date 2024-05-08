@@ -110,7 +110,7 @@ public class GUI implements ActionListener {
 
         }
     }
-    //DELETE
+    //DELETE </>
 
     private void employeeUI(int type) {
         mainFrame.getContentPane().removeAll();
@@ -322,7 +322,9 @@ public class GUI implements ActionListener {
         } else if (e.getSource() == adminInsertButton) {
             // Handle admin insert button action
             int latestEmpNo = employeeDA.getLatestEmpNo(); // lites empNO shuta
-            new InsertEmpGUI(latestEmpNo);
+
+            new InsertEmpGUI(latestEmpNo, tableModel, employeeDA, this);
+
             
         } else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
@@ -459,5 +461,6 @@ public class GUI implements ActionListener {
             }
         }
     }
+
 
 }   
