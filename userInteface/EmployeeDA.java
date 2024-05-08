@@ -15,7 +15,7 @@ public class EmployeeDA {
 
     // Method to read employee data from the CSV file and populate a 2-3 tree
     public TwoThreeTree readFromCSV() {
-        TwoThreeTree tree = new TwoThreeTree(3);
+        TwoThreeTree tree = new TwoThreeTree(2);
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
