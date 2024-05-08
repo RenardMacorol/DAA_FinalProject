@@ -76,8 +76,6 @@ To run the Employee Management System, follow these steps:
 
 ### Contributors
 
-### Contributors
-
 | Role   | Name                    | GitHub Profile                            |
 |--------|-------------------------|-------------------------------------------|
 | Leader | Macorol, Renard B.      | [RenardMacorol](https://github.com/RenardMacorol) |

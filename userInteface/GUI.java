@@ -29,7 +29,8 @@ public class GUI implements ActionListener {
     private TwoThreeTree tree;
     private EmployeeDA employeeDA;
     private JButton searchAdminButton;
-
+    
+    
 
     DecimalFormat decimalFormat = new DecimalFormat("$###.00");
     Font buttonFonts = new Font("Verdana", Font.PLAIN, 50);
@@ -326,7 +327,10 @@ public class GUI implements ActionListener {
         } else if (e.getSource() == adminGenerateButton) {
             // Handle employee button action
             GenerateReportUI generate = new GenerateReportUI(tree);
-        } else if (e.getSource() == adminUpdateButton) {
+        }else if (e.getSource() == adminVisualButton) {
+            visualizeTree();
+        } 
+        else if (e.getSource() == adminUpdateButton) {
             UpdateEmpGUI updateEmpGUI = new UpdateEmpGUI(mainFrame, tree, decimalFormat);
 
         }else if(e.getSource() == adminVisualButton){
@@ -396,6 +400,64 @@ public class GUI implements ActionListener {
 
         return index;
     }
-
+    public void visualizeTree() {
+        mainFrame.getContentPane().removeAll();
+        
+        StringBuilder treeString = new StringBuilder();
+        
+        // Traverse the tree and build the tree string
+        buildTreeString(tree.root, "", true, treeString);
+        
+        // Create a text area to display the tree
+        JTextArea textArea = new JTextArea();
+        textArea.setFont(new Font("Monospaced", Font.PLAIN, 30)); // Fixed-width font for alignment
+        textArea.setEditable(false); // Make text area uneditable
+        textArea.setText(treeString.toString());
+        
+        // Add the text area to a scroll pane
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setBounds(50, 100, 1400, 600); // Set bounds for the scroll pane
+        
+        // Add back buttons
+        addBackButtons();
+        
+        // Add scroll pane to the main frame
+        mainFrame.getContentPane().add(scrollPane);
+        mainFrame.setVisible(true); // Ensure main frame is visible
+    }
+    
+    private void buildTreeString(Node node, String prefix, boolean isTail, StringBuilder treeString) {
+        if (node == null) return;
+        
+        boolean hasChildren = false;
+        for (int i = 0; i <= node.numKeys; i++) {
+            if (node.children[i] != null) {
+                hasChildren = true;
+                break;
+            }
+        }
+        
+        // Print the node's values
+        treeString.append(prefix);
+        if (isTail) {
+            treeString.append("└── ");
+        } else {
+            treeString.append("├── ");
+        }
+        for (int i = 0; i < node.numKeys; i++) {
+            treeString.append(node.keys[i].getEmpNo());
+            if (i != node.numKeys - 1) {
+                treeString.append(", ");
+            }
+        }
+        treeString.append("\n");
+        
+        // Recursively print each child
+        if (hasChildren) {
+            for (int i = 0; i <= node.numKeys; i++) {
+                buildTreeString(node.children[i], prefix + (isTail ? "    " : "│   "), i == node.numKeys, treeString);
+            }
+        }
+    }
 
 }   
